@@ -1,5 +1,3 @@
-Here is a clean and complete `README.md` file for your **Voice RAG Customer-Care Assistant** project, formatted in markdown and ready to place in the root of your GitHub repository:
-
 ---
 
 ```markdown
