@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3000'); // Update to Vercel URL after deployment
+const socket = io('https://voice-customer-care-assistance.vercel.app/'); // Update to Vercel URL after deployment
 
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.continuous = false;
