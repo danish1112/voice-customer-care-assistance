@@ -1,7 +1,7 @@
 
 ---
 
-#Voice RAG Customer-Care Assistant
+# Voice RAG Customer-Care Assistant
 
 A **voice-enabled customer care assistant** that uses **Retrieval-Augmented Generation (RAG)** to answer FAQs and a **mock API** for order status queries. Supports both **browser-based voice interaction** (Web Speech API) and **phone-based interaction** (Twilio), with **barge-in functionality** to allow users to interrupt ongoing responses.
 
