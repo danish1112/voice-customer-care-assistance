@@ -1,203 +1,211 @@
-# voice-customer-care-assistance
-Voice RAG Customer-Care Assistant
-A voice-enabled customer care assistant that uses Retrieval-Augmented Generation (RAG) to answer FAQs and a mock API for order status queries. Supports both browser-based voice interaction (Web Speech API) and phone-based interaction (Twilio), with barge-in functionality for interrupting responses.
-Live Demo
+Here is a clean and complete `README.md` file for your **Voice RAG Customer-Care Assistant** project, formatted in markdown and ready to place in the root of your GitHub repository:
 
-Browser Demo: https://voice-customer-care-assistance.vercel.app (Replace with your Vercel URL after deployment)
-Phone Demo: Call +1 325-425-4029 (Twilio-powered, located in Roby, TX, US)
+---
 
-Features
+```markdown
+# Voice RAG Customer-Care Assistant
 
-Browser Voice Demo: Uses Web Speech API for speech-to-text (STT) and text-to-speech (TTS). Users can click "Start Listening" to speak queries like "How do I return an item?" or "What’s the status of order 12345?". Supports barge-in by speaking during responses.
-Phone Voice Demo: Uses Twilio for STT and TTS over phone calls. Call the Twilio number to interact, with barge-in support for interrupting responses.
-RAG Pipeline: Processes FAQ queries using 10+ documents in server/docs/ (Markdown/JSON), stored in a FAISS vector store with OpenAI embeddings. Responses include citations (e.g., "from returns-policy.md").
-Intents: Handles "returns/refunds" via RAG and "order status" via a mock API.
-UI: Modern, responsive frontend with Tailwind CSS, featuring a listening button and Twilio phone number details.
+A **voice-enabled customer care assistant** that uses **Retrieval-Augmented Generation (RAG)** to answer FAQs and a **mock API** for order status queries. Supports both **browser-based voice interaction** (Web Speech API) and **phone-based interaction** (Twilio), with **barge-in functionality** to allow users to interrupt ongoing responses.
 
-Project Structure
+---
 
-server/: Node.js backend (Express, Socket.io, Twilio, LangChain).
-index.js: Main server with WebSocket and Twilio webhook (/voice).
-rag.js: RAG pipeline with FAISS and OpenAI embeddings.
-intents.js: Intent handling for returns (RAG) and order status (mock).
-docs/: 10+ FAQ files (e.g., returns-policy.md, order-faq.json).
+## 🔗 Live Demos
 
+- **🌐 Browser Demo:** [https://voice-customer-care-assistance.vercel.app](https://voice-customer-care-assistance.vercel.app)  
+- **📞 Phone Demo:** Call **+1 325-425-4029** (Twilio-powered)
 
-client/: Frontend with Tailwind CSS UI.
-index.html: Main page with browser and phone demo sections.
-script.js: Handles Web Speech API and Socket.io for browser demo.
+---
 
+## ✨ Features
 
-vercel.json: Configures Vercel deployment for server/ and client/.
+### ✅ Browser Voice Demo
+- Uses Web Speech API for **Speech-to-Text (STT)** and **Text-to-Speech (TTS)**
+- Click **"Start Listening"** to ask questions like:
+  - “How do I return an item?”
+  - “What’s the status of order 12345?”
+- **Barge-in supported** — speak while it’s responding to interrupt
 
-Setup
+### ✅ Phone Voice Demo (Twilio)
+- Call the Twilio number and interact via phone
+- **Twilio STT/TTS** powers phone responses
+- **Barge-in supported** with `<Gather>` TwiML
 
-Clone the Repository:git clone https://github.com/danish1112/voice-customer-care-assistance.git
+### ✅ RAG Pipeline
+- Uses **FAISS** with **OpenAI Embeddings** to search across 10+ FAQ documents
+- Sources include `.md` and `.json` files in `server/docs/`
+- FAQ answers include citations (e.g., `from returns-policy.md`)
 
+### ✅ Intents
+- RAG-based responses for **returns**, **refunds**, **shipping**
+- **Mock API** handles **order status** lookups (e.g., "Where is order 12345?")
 
-Navigate to Server Directory:cd server
+---
 
+## 🗂️ Project Structure
 
-Install Dependencies:npm install
+```
 
+voice-customer-care-assistance/
+├── client/                  # Frontend (HTML, Tailwind, JS)
+├── server/                  # Backend (Express, LangChain, Twilio)
+│   ├── docs/                # FAQ files (Markdown/JSON)
+│   ├── index.js             # Main server (Express + WebSocket)
+│   ├── rag.js               # RAG pipeline with FAISS & OpenAI
+│   ├── intents.js           # Handles order and FAQ intents
+├── vercel.json              # Vercel config
+└── README.md                # You're here
 
-Set Up Environment Variables:
-Create server/.env with:OPENAI_API_KEY=your_openai_api_key_here
-TWILIO_ACCOUNT_SID=your_account_sid
-TWILIO_AUTH_TOKEN=your_auth_token
+````
+
+---
+
+## 🚀 Setup & Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/danish1112/voice-customer-care-assistance.git
+cd voice-customer-care-assistance
+````
+
+### 2. Setup Server
+
+```bash
+cd server
+npm install
+```
+
+### 3. Environment Variables
+
+Create a `.env` file in `server/`:
+
+```
+OPENAI_API_KEY=your_openai_api_key
+TWILIO_ACCOUNT_SID=your_twilio_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
 TWILIO_PHONE_NUMBER=+13254254029
+```
 
+### 4. Ensure FAQ Documents Exist
 
-Get OPENAI_API_KEY from platform.openai.com.
-Get Twilio credentials from twilio.com (Console > Dashboard).
+Ensure `server/docs/` contains 10+ documents like:
 
+* `returns-policy.md`
+* `order-faq.json`
+* `shipping.md`
+* `payment-options.json`
 
-Ensure FAQ Documents:
-Verify server/docs/ contains 10-15 files (e.g., returns-policy.md, order-faq.json, shipping.md, etc.).
-Example files:
-returns-policy.md: Details return process.
-order-faq.json: Order-related FAQs.
-payment-options.json: Payment method FAQs.
+### 5. Run Server
 
+```bash
+npm start
+```
 
+* Server runs at `http://localhost:3000`
+* You should see:
 
+  ```
+  Docs ingested successfully
+  Server running on port 3000
+  ```
 
-Run the Server:npm start
+---
 
+## 🧪 Running the Demos
 
-Server runs on http://localhost:3000.
-Logs should show "Docs ingested successfully" and "Server running...".
+### 🌐 Browser Demo
 
+1. Open [http://localhost:3000](http://localhost:3000) in **Google Chrome**
+2. Click **"Start Listening"**
+3. Say something like:
 
+   * "How do I return an item?"
+   * "Where is order 12345?"
+4. Watch barge-in work by speaking during a response
 
-Running the Browser Demo
+---
 
-Open http://localhost:3000 (or Vercel URL) in Chrome.
-Click Start Listening (turns green when active).
-Speak queries like:
-"How do I return an item?" (RAG response with citation).
-"What’s the status of order 12345?" (Mock API response).
+### 📞 Phone Demo
 
+1. In Twilio Console, set webhook:
 
-Barge-in: Speak during a response to interrupt and trigger a new query.
-View transcript in the UI (updates with user input and bot responses).
+   * **Voice & Fax > Webhook:** `https://your-vercel-url/voice`
+   * **Method:** HTTP POST
 
-Running the Phone Demo (Twilio)
+2. Call the number: `+1 325-425-4029`
 
-Set Up Twilio:
-In Twilio Console, configure your number (+1 325-425-4029):
-Voice & Fax > Webhook: https://your-vercel-url/voice (or ngrok URL for local testing, e.g., https://unhammered-nonmanual-kennedi.ngrok-free.dev/voice).
-Method: HTTP POST.
+3. Test queries (returns, order status) and interrupt mid-response
 
+---
 
+## 🌍 Deployment (Vercel)
 
+### 1. Push to GitHub
 
-Test Call:
-Call +1 325-425-4029 from a verified phone (Twilio Console > Phone Numbers > Verified Numbers).
-Hear: "Hello! How can I help you today?..."
-Speak queries (same as browser demo).
-Barge-in: Speak during a response to interrupt.
-
-
-Logs: Check server/Vercel logs for /voice POST requests and intent processing.
-
-Deployment (Vercel Free Tier)
-
-Push to GitHub:
-Ensure repo (github.com/danish1112/voice-customer-care-assistance) has all files.
-Exclude server/.env and server/faiss-index/ (in .gitignore).
-
+```bash
 git add .
-git commit -m "Ready for Vercel deployment"
+git commit -m "Ready for deployment"
 git push origin main
+```
 
+### 2. Deploy on Vercel
 
-Deploy to Vercel:
-Log in to vercel.com.
-Create project, import repo.
-Set Root Directory: (leave blank, vercel.json handles it).
-Add environment variables in Vercel Settings:OPENAI_API_KEY=your_openai_api_key_here
-TWILIO_ACCOUNT_SID=your_account_sid
-TWILIO_AUTH_TOKEN=your_auth_token
-TWILIO_PHONE_NUMBER=+13254254029
+* Login to [vercel.com](https://vercel.com)
+* Import the GitHub repo
+* Root directory: *(leave blank, `vercel.json` handles it)*
+* Set environment variables in Vercel dashboard:
 
+  * `OPENAI_API_KEY`
+  * `TWILIO_ACCOUNT_SID`
+  * `TWILIO_AUTH_TOKEN`
+  * `TWILIO_PHONE_NUMBER`
 
-Deploy. Note the URL (e.g., https://voice-customer-care-assistance.vercel.app).
+### 3. Update Twilio Webhook
 
+* Use your deployed URL: `https://your-vercel-url/voice`
 
-Update Twilio Webhook:
-In Twilio Console, set webhook to https://your-vercel-url/voice (HTTP POST).
+---
 
+## 🎥 Demo Video
 
-Update WebSocket:
-Ensure client/script.js uses const socket = io(); (dynamically uses Vercel URL).
+📺 [Insert YouTube or Loom Video Link Here]
+*Demonstrates both browser and phone demos, barge-in functionality, and logs.*
 
+---
 
-Test:
-Browser: Open Vercel URL, test browser demo.
-Phone: Call +1 325-425-4029, test phone demo.
+## 🛠️ Troubleshooting
 
+| Issue                          | Fix                                                                                            |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| **OpenAI 429 Error**           | Check usage at [platform.openai.com/billing](https://platform.openai.com/billing)              |
+| **FAISS index error**          | Ensure `server/docs/` has 10+ valid `.md` or `.json` files. Delete `faiss-index/` and restart. |
+| **Twilio webhook not working** | Ensure webhook URL is HTTPS and public. Use [ngrok](https://ngrok.com/) for local dev.         |
+| **Mic not working (browser)**  | Use **Chrome** and allow microphone permissions                                                |
+| **Permission errors**          | Run `chmod -R 755 server/` on macOS/Linux                                                      |
 
+---
 
-Demo Video
-[Link to YouTube/Loom video showing browser and phone demos] (Replace with your video link)
+## 🧱 Technologies Used
 
-Content:
-Browser demo: Show UI, test queries ("How do I return an item?", "What’s the status of order 12345?"), demonstrate barge-in.
-Phone demo: Call +1 325-425-4029, test same queries, show barge-in.
-Logs: Briefly show server/Vercel logs (ingestion success, /voice requests).
+* **Backend:** Node.js, Express, Socket.io, Twilio, LangChain, FAISS, OpenAI
+* **Frontend:** HTML, Tailwind CSS, JavaScript, Web Speech API
+* **Deployment:** Vercel (Free Tier)
 
+---
 
+## ⚠️ Notes
 
-Troubleshooting
+* Twilio may charge after free credit expires. Monitor usage.
+* OpenAI API usage is billable — check your usage and quotas.
+* Barge-in is supported in both browser and phone modes.
+* Project is deployed using Vercel’s free tier — great for demos!
 
-OpenAI 429 Quota Error:
-Check platform.openai.com/billing.
-Upgrade plan, use a new API key, or switch to Hugging Face embeddings (see code in project history).
+---
 
+## 📄 License
 
-FAISS Index Error:
-Verify server/docs/ has 10-15 valid .md or .json files.
-Delete server/faiss-index/: rm -rf server/faiss-index/.
-Restart server or run node server/ingest.js to debug ingestion:const { ingestDocs } = require('./rag');
-ingestDocs().then(() => console.log('Done')).catch(err => console.error(err));
+MIT License
 
+---
 
-
-
-Twilio Webhook Issues:
-Ensure webhook URL is HTTPS and public.
-Test https://your-vercel-url/voice in a browser (should return TwiML XML).
-Check Twilio Debugger (Console > Monitor > Logs).
-
-
-Browser Demo Issues:
-Use Chrome, allow microphone access.
-Check browser console for Web Speech API or Socket.io errors.
-
-
-Permission Issues:
-Run chmod -R 755 server/ on macOS/Linux.
-
-
-Vercel Deployment:
-Verify vercel.json is in root.
-Check Vercel logs for env var or dependency errors.
-Ensure server/index.js serves client/ files.
-
-
-
-Technologies
-
-Backend: Node.js, Express, Socket.io, Twilio, LangChain, FAISS, OpenAI.
-Frontend: HTML, Tailwind CSS, JavaScript, Web Speech API.
-Deployment: Vercel (free tier).
-Docs: 10+ FAQ files in server/docs/ (Markdown/JSON).
-
-Notes
-
-Twilio calls may incur charges after free trial credit ($15). Monitor usage in Twilio Console.
-OpenAI embeddings require a valid API key with sufficient quota.
-Barge-in is supported in both demos (browser via synth.cancel(), phone via Twilio <Gather>).
-Deployed on Vercel’s free tier, suitable for demo purposes.
-
+```
+```
