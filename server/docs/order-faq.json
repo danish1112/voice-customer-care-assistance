@@ -1,0 +1,12 @@
+{
+  "questions": [
+    {
+      "question": "How do I check my order status?",
+      "answer": "Use your order ID on our website or app to track status."
+    },
+    {
+      "question": "What if my order is delayed?",
+      "answer": "Contact support if delivery exceeds the estimated date."
+    }
+  ]
+}
